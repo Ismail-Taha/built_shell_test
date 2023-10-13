@@ -87,21 +87,21 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strdup(const char *s)
 {
-    char *str;
-    int len = 0, i;
-    
-    if (s == NULL)
-        return (NULL);
-    while (*s != '\0')
-    {
-        len++;
-        s++;
-    }
-    s = s - len;
-    str = malloc(sizeof(char) * (len + 1));
-    if (str == NULL)
-        return (NULL);
-    for (i = 0; i <= len; i++)
-        str[i] = s[i];
-    return (str);
+	char *str;
+	int len = 0, i;
+
+	if (s == NULL)
+		return (NULL);
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	s = s - len;
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	for (i = 0; i <= len; i++)
+		str[i] = s[i];
+			return (str);
 }

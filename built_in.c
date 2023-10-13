@@ -9,17 +9,17 @@
 
 int is_builtcmd(char *cmd)
 {
-    char *builtins[] = {
-        "exit", "env", "setenv", "unsetenv", "cd", NULL
-    };
-    int i;
-    
-    for (i = 0; builtins[i]; i++)
-    {
-        if (_strcmp(cmd, builtins[i]) == 0)
-            return (1);
-    }
-    return (0);
+	char *builtins[] = {
+		"exit", "env", "setenv", "unsetenv", "cd", NULL
+	};
+	int i;
+
+	for (i = 0; builtins[i]; i++)
+	{
+		if (_strcmp(cmd, builtins[i]) == 0)
+			return (1);
+	}
+	return (0);
 }
 
 /**
@@ -32,11 +32,11 @@ int is_builtcmd(char *cmd)
 
 void handl_builtcmd(char **cmd, char **argv, int *status, int indx)
 {
-    if (_strcmp(cmd[0], "exit") == 0)
-        exit_shel(cmd, argv, status, indx);
-    
-    else if (_strcmp(cmd[0], "env") == 0)
-        pr_env(cmd, status);
+	if (_strcmp(cmd[0], "exit") == 0)
+		exit_shel(cmd, argv, status, indx);
+
+	else if (_strcmp(cmd[0], "env") == 0)
+		pr_env(cmd, status);
 }
 
 /**
@@ -49,30 +49,30 @@ void handl_builtcmd(char **cmd, char **argv, int *status, int indx)
 
 void exit_shel(char **cmd, char **argv, int *status, int indx)
 {
-    int exit_status = (*status);
-    char *index, mesg[] = ": exit: Illegal number: ";
-    
-    if (cmd[1])
-    {
-        if (is_num_positive(cmd[1]))
-        {
-            exit_status = _atoi(cmd[1]);
-        }
-        else
-        {
-            index = int_asc(indx);
-            write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-            write(STDERR_FILENO, ": ", 2);
-            write(STDERR_FILENO, index, _strlen(index));
-            write(STDERR_FILENO, mesg, _strlen(mesg));
-            write(STDERR_FILENO, cmd[1], _strlen(cmd[1]));
-            write(STDERR_FILENO, "\n", 1);
-            free(index);
-            freearray(cmd);
-            (*status) = 2;
-            return;
-        }
-    }
-    freearray(cmd);
-    exit(exit_status);
+	int exit_status = (*status);
+	char *index, mesg[] = ": exit: Illegal number: ";
+
+	if (cmd[1])
+	{
+		if (is_num_positive(cmd[1]))
+		{
+			exit_status = _atoi(cmd[1]);
+		}
+		else
+		{
+			index = int_asc(indx);
+			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
+			write(STDERR_FILENO, ": ", 2);
+			write(STDERR_FILENO, index, _strlen(index));
+			write(STDERR_FILENO, mesg, _strlen(mesg));
+			write(STDERR_FILENO, cmd[1], _strlen(cmd[1]));
+			write(STDERR_FILENO, "\n", 1);
+			free(index);
+			freearray(cmd);
+			(*status) = 2;
+			return;
+		}
+	}
+	freearray(cmd);
+	exit(exit_status);
 }
