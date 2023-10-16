@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <errno.h>
 
-#define SPECIF " \t\n"
+#define SPECIF " \t\r\a\n"
 extern char **environ;
 
 
@@ -28,6 +28,7 @@ int _executer(char **cmd, char **argv, int indx);
 void pr_error(char *name, char *cmd, int indx);
 int is_builtcmd(char *cmd);
 void handl_builtcmd(char **cmd, char **argv, int *status, int indx);
+void exit_error(char **cmd, char **argv, int indx);
 
 /*string_hundler_functions*/
 char *_strdup(const char *s);

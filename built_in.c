@@ -50,7 +50,6 @@ void handl_builtcmd(char **cmd, char **argv, int *status, int indx)
 void exit_shel(char **cmd, char **argv, int *status, int indx)
 {
 	int exit_status = (*status);
-	char *index, mesg[] = ": exit: Illegal number: ";
 
 	if (cmd[1])
 	{
@@ -60,14 +59,7 @@ void exit_shel(char **cmd, char **argv, int *status, int indx)
 		}
 		else
 		{
-			index = int_asc(indx);
-			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
-			write(STDERR_FILENO, ": ", 2);
-			write(STDERR_FILENO, index, _strlen(index));
-			write(STDERR_FILENO, mesg, _strlen(mesg));
-			write(STDERR_FILENO, cmd[1], _strlen(cmd[1]));
-			write(STDERR_FILENO, "\n", 1);
-			free(index);
+			exit_error(cmd, argv, indx);
 			freearray(cmd);
 			(*status) = 2;
 			return;
